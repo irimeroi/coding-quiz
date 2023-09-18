@@ -2,53 +2,51 @@ var timeLeftEl = document.querySelector('#time-left');
 var startQuizEl = document.querySelector('#start-quiz');
 var startBtnEl = document.querySelector('#start-button');
 var questionsBoxEl = document.querySelector('#questions-box');
+var answerInfoEl = document.querySelector('#answer-info');
+var summaryEl = document.querySelector('#summary');
+summaryEl.style.display = 'none';
 
 var currentIndex = 0;
-var timeLeft = 10;
+var timeLeft = 100;
 var intervalId;
-
-// var questionTextEl = document.querySelector("#question-text")
-// var optOneEl = document.querySelector("#opt1");
-// var optTwoEl = document.querySelector("#opt2");
-// var optThreeEl = document.querySelector("#opt3");
-// var optFourEl = document.querySelector("#opt4");
 
 var questions = [
     {
         title: 'Where is the Eiffel Tower located?',
         choices: ['London', 'Paris', 'Buenos Aires', 'Los Angeles'],
         correctAnswer: 'Paris',
+        lastStep: false
     },
     {
-        title: 'Question 2',
-        choices: ['1', '2', '3', '4'],
-        correctAnswer: '1',
+        title: 'What is the official language of the United States',
+        choices: ['English', 'Spanish', 'Italian', 'It does not have an official language'],
+        correctAnswer: 'It does not have an official language',
+        lastStep: false
     },
     {
         title: 'Who won the 2022 FIFA World Cup?',
-        choices: ['Argentina', 'France', 'Brasil', 'Spain'],
+        choices: ['Argentina', 'France', 'Brazil', 'Spain'],
         correctAnswer: 'Argentina',
+        lastStep: false
     },
     {
-        title: 'Seven Wonders',
-        choices: ['1', '2', '3', '4'],
-        correctAnswer: '4',
+        title: 'After Russia, what is the second largest country by area in the world?',
+        choices: ['China', 'United Stated of America', 'Canada', 'Brazil'],
+        correctAnswer: 'Canada',
+        lastStep: false
     },
     {
-        title: 'Question 5',
-        choices: ['1', '2', '3', '4'],
-        correctAnswer: '3',
-    },
+        title: 'Which option does NOT belong to one of the Seven Wonders of the New World?',
+        choices: ['The Great Pramyd of Giza', 'The Great Wall of China', 'Machu Picchu', 'The Statue of Zeus at Olympia'],
+        correctAnswer: 'The Statue of Zeus at Olympia',
+        lastStep: true
+    }
 ];
 
 //start Quiz button
 startBtnEl.addEventListener('click', startQuiz);
 
-// optOneEl.addEventListener("click", nextQuestion)
-// optTwoEl.addEventListener("click", nextQuestion)
-// optThreeEl.addEventListener("click", nextQuestion)
-// optFourEl.addEventListener("click", nextQuestion)
-
+//function that starts the quiz
 function startQuiz() {
     startTimer();
     startQuizEl.style.display = "none";
@@ -58,75 +56,65 @@ function startQuiz() {
 
 function startTimer() {
     intervalId = setInterval(function () {
+        if (timeLeft <= 0) {
+            showSummary();
+        }
         timeLeftEl.textContent = timeLeft + ' seconds left';
         timeLeft--;
     }, 1000);
 }
 
+//function that shows the first question
 function showQuestions() {
     var h2El = document.createElement('h2');
     h2El.textContent = questions[currentIndex].title;
     questionsBoxEl.appendChild(h2El);
 
+    //loop to get the questions in order
     for (var i = 0; i < questions[currentIndex].choices.length; i++) {
         var choiceButtonEl = document.createElement('button');
         choiceButtonEl.textContent = questions[currentIndex].choices[i];
         questionsBoxEl.appendChild(choiceButtonEl);
+        choiceButtonEl.addEventListener('click', nextQuestion);
     }
-
-    //make a button for the questions that has a text contexct of alerts and you can compare to the answers (the question[O].answer)
-    //use the event object on them: event.target.textContent that's how you'll know which one they clicked
-    //event listener on the box the questions are going in -- event propagation
 }
 
-questionsBoxEl.addEventListener('click', nextQuestion());
-
+//function that shows the next question after the user clicked on an answer
 function nextQuestion(event) {
     var correctAnswer = questions[currentIndex].correctAnswer;
+    //textContent brings whatever the user clicks
     var userChoice = event.target.textContent;
-    console.log(correctAnswer + " vs. " + userChoice)
 
     if (correctAnswer === userChoice) {
-        console.log('yayyy')
+        answerInfoEl.textContent = "Correct";
     } else {
-        console.log('nope');
+        answerInfoEl.textContent = "Wrong";
+        timeLeft-= 15;
     }
 
-    currentIndex++;
-    showQuestions();
+    //to hide the question displayed before
+    questionsBoxEl.replaceChildren();
+
+    //indicates the last question
+    if (questions[currentIndex].lastStep) {
+        showSummary();
+    } else {
+        currentIndex++;
+        showQuestions();
+    }
 }
 
-// function handleUserChoice (event) {
-//     if (event.target.matches('button')) {
+//the results window will appear after the last question was rendered or the clock got to 0
+function showSummary() {
+    clearInterval(intervalId);
+    summaryEl.style.display = 'block';
+}
 
-//     }
-// }
-
-//     // checking of answer
-//     var correctAnswer = questions[currentIndex].correctAnswer;
-//     var userChoice = event.target.textContent;
-
-//     console.log(correctAnswer + " vs. " + userChoice)
-
-//     if(correctAnswer == userChoice) {
-//         console.log("Correct!")
-//     } else {
-//         console.log("Wrong!")
-//         timeLeft = timeLeft - 15;
-//     }
+function saveLocalStorage() {
+    var inputEl = document.querySelector('#userInput')
+    localStorage.setItem('userInitails', inputEl.value)
+}
 
 
-//     // move on to next question
-//     currentIndex++;
-//     showQuestions()
-
-// }
-
-
-
-
-
-
-//end page where you can save your initials 
 //leaderboard saved in local storage
 //href for Highest scores
