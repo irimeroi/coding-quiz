@@ -12,33 +12,33 @@ var intervalId;
 
 var questions = [
     {
-        title: 'Where is the Eiffel Tower located?',
-        choices: ['London', 'Paris', 'Buenos Aires', 'Los Angeles'],
-        correctAnswer: 'Paris',
+        title: 'How can a datatype be declared to be a constant type?',
+        choices: ['const', 'var', 'let', 'constant'],
+        correctAnswer: 'const',
         lastStep: false
     },
     {
-        title: 'What is the official language of the United States',
-        choices: ['English', 'Spanish', 'Italian', 'It does not have an official language'],
-        correctAnswer: 'It does not have an official language',
+        title: 'Which of the following methods can be used to display data in some form using Javascript?',
+        choices: ['document.write()', 'console.log()', 'window.alert()', 'All of the above'],
+        correctAnswer: 'All of the above',
         lastStep: false
     },
     {
-        title: 'Who won the 2022 FIFA World Cup?',
-        choices: ['Argentina', 'France', 'Brazil', 'Spain'],
-        correctAnswer: 'Argentina',
+        title: 'Upon encountering empty statements, what does the Javascript Interpreter do??',
+        choices: ['Throws an error', 'Ignores the statement', 'Gives a warning', 'Creates a statement'],
+        correctAnswer: 'Ignores the statement',
         lastStep: false
     },
     {
-        title: 'After Russia, what is the second largest country by area in the world?',
-        choices: ['China', 'United Stated of America', 'Canada', 'Brazil'],
-        correctAnswer: 'Canada',
+        title: 'Which function is used to serialize an object into a JSON string in Javascript?',
+        choices: ['parse()', 'convert()', 'stringify()', 'function()'],
+        correctAnswer: 'stringify()',
         lastStep: false
     },
     {
-        title: 'Which option does NOT belong to one of the Seven Wonders of the New World?',
-        choices: ['The Great Pramyd of Giza', 'The Great Wall of China', 'Machu Picchu', 'The Statue of Zeus at Olympia'],
-        correctAnswer: 'The Statue of Zeus at Olympia',
+        title: 'What does the Javascript “debugger” statement do?',
+        choices: ['It will debug all the errors in the program at runtime', 'It acts as a breakpoint in a program', 'It will debug error in the current statement if any', 'None of the above'],
+        correctAnswer: 'It acts as a breakpoint in a program',
         lastStep: true
     }
 ];
@@ -50,7 +50,7 @@ startBtnEl.addEventListener('click', startQuiz);
 function startQuiz() {
     startTimer();
     startQuizEl.style.display = "none";
-    questionsBoxEl.style.display = "block";
+    questionsBoxEl.style.display = "inline-block";
     showQuestions();
 }
 
@@ -107,13 +107,25 @@ function nextQuestion(event) {
 //the results window will appear after the last question was rendered or the clock got to 0
 function showSummary() {
     clearInterval(intervalId);
+    timeLeftEl.style.display = "none";
     summaryEl.style.display = 'block';
+    var finalScore = document.querySelector('#final-score');
+    finalScore.textContent = 'Your score is ' + timeLeft;
 }
 
 function saveLocalStorage() {
     var inputEl = document.querySelector('#userInput')
     localStorage.setItem('userInitails', inputEl.value)
 }
+
+
+var highScores = JSON.parse(localStorage.getItem('#userInput'));
+var listEl = document.querySelector('ul#high-scores');
+
+function renderHighScores() {
+    
+}
+
 
 
 //leaderboard saved in local storage

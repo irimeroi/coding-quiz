@@ -1,0 +1,16 @@
+* {
+    background-color: burlywood;
+    color: white;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#summary {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

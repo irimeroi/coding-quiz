@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel the World Quiz</title>
+    <title>JavaScript Coding Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -13,8 +13,8 @@
         <div id="time-left"></div>
 
         <div id="start-quiz">
-            <h1>Travel Quiz!</h1>
-            <p>Welcome to the Travel the World Quiz. Try to solve the questions before running out of time! Keep in mind that incorrect answers will penalize your time by 15 seconds!</p>
+            <h1>JavaScript Coding Quiz!</h1>
+            <p>Welcome to the JavaScript Quiz. Try to solve the questions before running out of time! <br> Keep in mind that incorrect answers will penalize your time by 15 seconds!</p>
             <button id="start-button">Start quiz</button>
         </div>
     </main>
@@ -24,8 +24,10 @@
 
     <div id="summary">
         <h2>All done!</h2>
-        <input id="userInput" type="text">
-        <button onClick="saveLocalStorage()">Submit</button>
+        <p id="final-score"></p>
+        <input id="userInput" type="text" placeholder="Add your initials here">
+        <button id="submit-button" onClick="saveLocalStorage()">Submit</button>
+        <ul id="high-scores"></ul>
     </div>
 
     <script src="./assets/javascript/script.js"></script>
