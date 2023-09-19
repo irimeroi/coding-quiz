@@ -1,4 +1,6 @@
 # coding-quiz
+![Alt text](/assets/images/Screenshot%202023-09-18%20at%2010.36.44%20PM.png "Website example")
+
 
 ## Description
 As stated in the title, this project is a coding quiz. It presents a series of JavaScript related questions, which should be answered before running out of time.

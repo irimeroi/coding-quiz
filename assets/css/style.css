@@ -9,8 +9,29 @@ main {
     text-align: center;
 }
 
+#time-left {
+    color: black;
+}
+
 #summary {
     display: flex;
     justify-content: center;
     text-align: center;
+}
+
+#questions-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#answer-info {
+    display: flex;
+    justify-content: center;
+}
+
+.choiceBtn {
+    margin-bottom: 10px;
+    min-width: 30px;
 }
