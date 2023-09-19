@@ -50,7 +50,7 @@ startBtnEl.addEventListener('click', startQuiz);
 function startQuiz() {
     startTimer();
     startQuizEl.style.display = "none";
-    questionsBoxEl.style.display = "inline-block";
+    questionsBoxEl.style.display = "flex";
     showQuestions();
 }
 
@@ -74,6 +74,7 @@ function showQuestions() {
     for (var i = 0; i < questions[currentIndex].choices.length; i++) {
         var choiceButtonEl = document.createElement('button');
         choiceButtonEl.textContent = questions[currentIndex].choices[i];
+        choiceButtonEl.classList.add('choiceBtn');
         questionsBoxEl.appendChild(choiceButtonEl);
         choiceButtonEl.addEventListener('click', nextQuestion);
     }
@@ -88,7 +89,7 @@ function nextQuestion(event) {
     if (correctAnswer === userChoice) {
         answerInfoEl.textContent = "Correct";
     } else {
-        answerInfoEl.textContent = "Wrong";
+        answerInfoEl.textContent = "Incorrect";
         timeLeft-= 15;
     }
 
@@ -119,12 +120,12 @@ function saveLocalStorage() {
 }
 
 
-var highScores = JSON.parse(localStorage.getItem('#userInput'));
-var listEl = document.querySelector('ul#high-scores');
+// var highScores = JSON.parse(localStorage.getItem('#userInput'));
+// var listEl = document.querySelector('ul#high-scores');
 
-function renderHighScores() {
+// function renderHighScores() {
     
-}
+// }
 
 
 
