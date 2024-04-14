@@ -1,25 +1,40 @@
 * {
-    background-color: burlywood;
+    background-color: rgb(104, 132, 98);
     color: white;
+}
+
+body {
+    border: 1px solid #ffffff;
 }
 
 main {
     display: flex;
     justify-content: center;
     text-align: center;
+    padding: 3%;
 }
 
-#time-left {
-    color: black;
+div h1 {
+    text-decoration: underline;
+    padding-bottom: 5%;
 }
 
-#summary {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+div p {
+    padding-bottom: 5%;
+}
+
+#start-quiz {
+    padding: 5%;
+}
+
+#start-button {
+    border-color: white;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #questions-box {
+    padding-bottom: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,5 +48,48 @@ main {
 
 .choiceBtn {
     margin-bottom: 10px;
-    min-width: 30px;
+    padding: 1%;
+    width: 200px;
+    color: white;
+    border-color: white;
+    border-radius: 5px;
+}
+
+#time-left {
+    color: white;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+#summary {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+#userInput {
+    border-color: white;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 5% 1%;
+}
+
+#submit-button {
+    background-color: white;
+    border-color: white;
+    color: rgb(104, 132, 98);
+    display: inline;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+::placeholder {
+    color: rgb(204, 208, 202);
 }

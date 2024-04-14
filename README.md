@@ -1,5 +1,6 @@
 # coding-quiz
 ![Alt text](/assets/images/Screenshot%202023-09-18%20at%2010.36.44%20PM.png "Website example")
+
 https://irimeroi.github.io/coding-quiz/
 
 ## Description

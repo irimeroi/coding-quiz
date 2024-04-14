@@ -56,11 +56,11 @@ function startQuiz() {
 
 function startTimer() {
     intervalId = setInterval(function () {
+        timeLeft--;
+        timeLeftEl.textContent = timeLeft + ' seconds left';
         if (timeLeft <= 0) {
             showSummary();
         }
-        timeLeftEl.textContent = timeLeft + ' seconds left';
-        timeLeft--;
     }, 1000);
 }
 
@@ -87,9 +87,9 @@ function nextQuestion(event) {
     var userChoice = event.target.textContent;
 
     if (correctAnswer === userChoice) {
-        answerInfoEl.textContent = "Correct";
+        answerInfoEl.textContent = "Good job!";
     } else {
-        answerInfoEl.textContent = "Incorrect";
+        answerInfoEl.textContent = "Oops, try again!";
         timeLeft-= 15;
     }
 
@@ -98,6 +98,7 @@ function nextQuestion(event) {
 
     //indicates the last question
     if (questions[currentIndex].lastStep) {
+        // answerInfoEl.style.display = "none";
         showSummary();
     } else {
         currentIndex++;
